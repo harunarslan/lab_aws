@@ -12,7 +12,7 @@ cd
 mkdir .config
 mkdir .config/rclone
 
-mv accounts/ /root/.config/rclone/
+mv accounts.zip /root/.config/rclone/
 mv *.conf /root/.config/rclone/rclone.conf
 
 mkdir .lab
@@ -95,7 +95,7 @@ cd /root/alpha
 chmod 777 alpha.sh
 git submodule update --init
 screen -dmS alpha bash alpha.sh
-
+cd /root.config/rclone/ && unzip accounts.zip && rm *.zip
 cd /root/.lab/
 screen -dmS move bash move.sh
 screen -dmS up1 bash up1.sh
@@ -106,6 +106,7 @@ random_minute=$((RANDOM % 6))
 { crontab -l; echo "$random_minute 0 * * * /root/.lab/tele.sh"; } | crontab -
 
 cd
+rm -r lab
 rm -r snap
 rm build.sh
 sudo rm -r /var/log/* 
